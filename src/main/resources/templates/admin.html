@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-<html xmlns="http://www.thymeleaf.org"></html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Администратор</title>
@@ -9,6 +8,8 @@
 <br>
 <body>
 <a href="/admin/get">Список всех пользователей</a>
+</body>
+</html>
 </body>
 <br>
 <form th:action="@{/logout}" th:method="POST">
