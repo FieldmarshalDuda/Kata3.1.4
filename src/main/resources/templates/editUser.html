@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit user</title>
+</head>
+<body>
+<!--/*@thymesVar id="user" type="ru.kata.spring.boot_security.demo.model.User"*/-->
+<form th:method="PATCH" th:action="@{/admin/{id}(id=${user.getId()})}"
+      th:object="${user}">
+  <label for="username">Новое имя</label>
+  <input id="username" type="text" th:field="*{username}" >
+    <div style="color:palevioletred" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username error</div>
+<br>
+    <label for="email">Новый пароль</label>
+    <input id="email" type="text" th:field="*{password}"/>
+    <div style="color:palevioletred" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password error</div>
+    <br>
+  <input type="submit" value="Обновить">
+</form>
+<br>
+<form th:action="@{/logout}" th:method="POST">
+    <input type="submit" th:value="Logout">
+</form>
+</body>
+</html>
