@@ -22,24 +22,6 @@ public class UserController {
         this.service=service;
     }
 
-//        service.save(new User("user","user"));
-//        User admin = new User("admin","admin");
-//        service.save(admin);
-
-
-
-
-//    @GetMapping("/get")
-//    public String getUser(ModelMap model){
-//        model.addAttribute("users",service.getUsers());
-//        return "getall";
-//    }
-//    @GetMapping("/{id}")
-//    public String show(@PathVariable("id")int id, Model model){
-//        model.addAttribute("user",service.show(id));
-//        return "show";
-//    }
-
     @GetMapping("")
     public String user (Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -49,33 +31,3 @@ public class UserController {
     }
 
 }
-//    @GetMapping("/new")
-//    public String newUser(@ModelAttribute("user") User user){
-//        return "newUser";
-//    }
-//    @PostMapping()
-//    public String create(@ModelAttribute("user") User user, BindingResult bindingResult){
-//        if(bindingResult.hasErrors()) {
-//            return "newUser";
-//        }
-//        service.save(user);
-//        return "redirect:users/get";
-//    }
-//    @GetMapping("/{id}/edit")
-//    public String edit(Model model,@PathVariable("id")int id){
-//        model.addAttribute("user", service.show(id));
-//        return "editUser";
-//    }
-//    @PatchMapping("/{id}")
-//    public String update(@ModelAttribute("user")  User user,BindingResult bindingResult,@PathVariable("id") int id){
-//        if(bindingResult.hasErrors()){
-//            return "editUser";
-//        }
-//        service.update(id,user);
-//        return "redirect:/users/get";
-//    }
-//    @DeleteMapping("/{id}")
-//    public String delete(@PathVariable("id")int id){
-//        service.delete(id);
-//        return "redirect:/users/get";
-//    }

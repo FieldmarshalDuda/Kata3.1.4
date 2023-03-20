@@ -2,14 +2,13 @@ package ru.kata.spring.boot_security.demo.dao;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.repository.RoleRepository;
 
 import javax.persistence.*;
-import java.util.Arrays;
+
 import java.util.Collections;
 import java.util.List;
 
