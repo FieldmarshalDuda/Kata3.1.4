@@ -69,6 +69,9 @@ public class User{
     }
     public void addRole(Role role){ this.roles.add(role);}
 
+    public boolean hasRole(String roleName) {
+        return roles.contains(roleName);
+    }
     @Override
     public String toString() {
         return ("Username:" + username + " / "+" / " + "Identification: " + id + " "+"Password:"+ password);

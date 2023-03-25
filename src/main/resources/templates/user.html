@@ -1,11 +1,116 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="en">
 <head>
-    <title>Spring Security Example</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+
+    <title>User page</title>
 </head>
 <body>
-<h1>User, welcome spring boot security page!</h1>
+<!--/*@thymesVar id="user" type="ru.kata.spring.boot_security.demo.model.User"*/-->
+<nav class="navbar sticky-top bg-dark text-white">
+        <span class="navbar-brand mb-0">
+            <span style="font-weight: bold" th:text="${user.getUsername()}"></span> with roles:
+            <span th:each="role : ${user.getRoles()}">
+                <span th:text="${role.getName().replace('ROLE_', '')}"></span>
+            </span>
+        </span>
+    <a href="/logout" class="btn text-white-50" role="button" aria-pressed="true">Logout</a>
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-2 bg-white pt-3 min-vh-100 px-0">
+            <div class="container-fluid px-0">
+                <ul class="nav flex-column nav-pills ">
+                    <li class="nav-item">
+                        <a class="nav-link"  href="/user">User</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col pt-4 h-100 min-vh-100 bg-light">
+            <div class="container-fluid">
+                <h1 class="display-5 px-3 pb-3">User information page</h1>
+
+                <div class="container-fluid">
+
+                    <div class="tab-container bg-white border rounded ">
+                        <div class="tab-content bg-white " id="myTabContent">
+                            <div class="tab-pane fade show active bg-white" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <div class="tab-container-fluid bg-light border-bottom pt-2 pb-1 px-0">
+                                    <h4 class="text-start px-4">About user</h4>
+                                </div>
+                                <div class="tab-content bg-white pt-4 px-4 pb-4">
+                                    <table class="table table-striped ">
+                                        <thead>
+                                        <tr>
+                                            <th scope="col">ID</th>
+                                            <th scope="col">Username</th>
+                                            <th scope="col">Role</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:object="${user}">
+                                            <th scope="row" th:text="${user.getId()}">ID</th>
+                                            <td class="pt-3" th:text="${user.getUsername()}">Username</td>
+                                            <td class="pt-3" th:text="${user.getRoles()}">Role</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
+
+
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
 
 
 </body>
 </html>
+

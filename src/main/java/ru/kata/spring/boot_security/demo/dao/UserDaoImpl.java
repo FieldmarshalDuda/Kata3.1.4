@@ -37,22 +37,23 @@ public class UserDaoImpl implements UserDao {
                 .setParameter("i", id).getSingleResult();
     }
 
+    @Override
+
     public void save(User user) {
-        user.setRoles(Collections.singletonList(roleRepository.findByName("ROLE_USER")));
         user.setPassword(encoder.encode(user.getPassword()));
-        entityManager.persist(user);
+        if (user.getRoles().contains(roleRepository.findByName("ROLE_ADMIN"))) {
+            user.getRoles().add(roleRepository.findByName("ROLE_USER"));
+        }
+       entityManager.persist(user);
     }
 
-    public void update(int id, User user) {
-        User UpdUser = show(id);
-        UpdUser.setUsername(user.getUsername());
-        UpdUser.setPassword(encoder.encode(user.getPassword()));
-        if(!UpdUser.getRoles().contains("ROLE_ADMIN")){
-            user.setRoles(Collections.singletonList(roleRepository.findByName("ROLE_USER")));
-        }else {
-            user.setRoles(UpdUser.getRoles());
+    public void update(int id, User updatedUser) {
+        updatedUser.setId(id);
+        updatedUser.setPassword(encoder.encode(updatedUser.getPassword()));
+        if (updatedUser.getRoles().contains(roleRepository.findByName("ROLE_ADMIN"))) {
+            updatedUser.getRoles().add(roleRepository.findByName("ROLE_USER"));
         }
-        entityManager.merge(UpdUser);
+        entityManager.merge(updatedUser);
     }
 
     public void delete(int id) {
