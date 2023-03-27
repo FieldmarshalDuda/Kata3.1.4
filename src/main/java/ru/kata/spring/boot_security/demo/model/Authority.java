@@ -1,5 +1,8 @@
 package ru.kata.spring.boot_security.demo.model;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -20,6 +23,7 @@ public class Authority {
     private int id;
     @Column(name = "name")
     private String name;
-    @ManyToMany(mappedBy = "authorities", fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "authorities", fetch = FetchType.LAZY)
+    @Fetch(FetchMode.JOIN)
     private List<Role> roles;
 }

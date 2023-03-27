@@ -1,6 +1,9 @@
 package ru.kata.spring.boot_security.demo.model;
 
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -25,7 +28,8 @@ public class User {
                     name = "users_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(
                     name = "roles_id", referencedColumnName = "id"))
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
+    @Fetch(FetchMode.JOIN)
     private List<Role> roles;
 
     public User() {
