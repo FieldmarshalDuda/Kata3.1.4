@@ -13,5 +13,5 @@ public interface UserService {
     void save(User user);
     void update(int id,User user);
     void delete(int id);
-    public Set<Role> getRole();
+    Set<Role> getRole();
 }

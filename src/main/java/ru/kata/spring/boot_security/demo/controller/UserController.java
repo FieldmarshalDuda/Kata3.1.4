@@ -20,14 +20,14 @@ public class UserController {
     private final UserService service;
 
     @Autowired
-    public UserController( UserService service) {
-        this.service=service;
+    public UserController(UserService service) {
+        this.service = service;
     }
 
     @GetMapping("")
-    public String user (@AuthenticationPrincipal Details userdetails, Model model) {
-        model.addAttribute("user",userdetails.getUser());
-        model.addAttribute("roles",userdetails.getUser().getRoles());
+    public String user(@AuthenticationPrincipal Details userdetails, Model model) {
+        model.addAttribute("user", userdetails.getUser());
+        model.addAttribute("roles", userdetails.getUser().getRoles());
         return "user";
     }
 

@@ -7,7 +7,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "users")
-public class User{
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -16,7 +16,7 @@ public class User{
     private String username;
 
 
-    @Column(name = "password",nullable = false)
+    @Column(name = "password", nullable = false)
     private String password;
 
     @JoinTable(
@@ -27,6 +27,7 @@ public class User{
                     name = "roles_id", referencedColumnName = "id"))
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Role> roles;
+
     public User() {
     }
 
@@ -67,13 +68,17 @@ public class User{
     public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
-    public void addRole(Role role){ this.roles.add(role);}
+
+    public void addRole(Role role) {
+        this.roles.add(role);
+    }
 
     public boolean hasRole(String roleName) {
         return roles.contains(roleName);
     }
+
     @Override
     public String toString() {
-        return ("Username:" + username + " / "+" / " + "Identification: " + id + " "+"Password:"+ password);
+        return ("Username:" + username + " / " + " / " + "Identification: " + id + " " + "Password:" + password);
     }
 }

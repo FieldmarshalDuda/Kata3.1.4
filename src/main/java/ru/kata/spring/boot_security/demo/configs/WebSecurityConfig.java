@@ -23,18 +23,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final UserDetailService service;
 
     public WebSecurityConfig(SuccessUserHandler successUserHandler, UserDetailService service) {
-        this.service=service;
+        this.service = service;
         this.successUserHandler = successUserHandler;
     }
+
     // Конф. Spring Security в т.ч авторизация
     @Override
-    protected void configure(HttpSecurity http) throws Exception{
+    protected void configure(HttpSecurity http) throws Exception {
         http
 
                 .authorizeRequests()
                 .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/user").hasAnyRole("ADMIN","USER")
-                .antMatchers("/auth/login","/auth/registration","/error").permitAll()
+                .antMatchers("/user").hasAnyRole("ADMIN", "USER")
+                .antMatchers("/auth/login", "/auth/registration", "/error").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/auth/login")
@@ -48,12 +49,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     //Настройка аутентификации
-    protected void configure(AuthenticationManagerBuilder auth)throws Exception{
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(service)
                 .passwordEncoder(getPasswordEncoder());// TODO
     }
+
     @Bean
-    public PasswordEncoder getPasswordEncoder(){
+    public PasswordEncoder getPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
 

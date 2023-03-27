@@ -49,5 +49,7 @@ public class Details implements UserDetails {
         return true;
     }
 
-    public User getUser(){return this.user;}
+    public User getUser() {
+        return this.user;
+    }
 }

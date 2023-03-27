@@ -30,6 +30,7 @@ public class SetupLoader implements
 
     private final AuthorityRepository authorityRepository;
     private final PasswordEncoder encoder;
+
     @Autowired
 
     public SetupLoader(AuthorityRepository authorityRepository, UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder encoder) {
@@ -55,7 +56,7 @@ public class SetupLoader implements
                 readAuthority, writeAuthority);
         createRoleIfNotFound("ROLE_ADMIN", adminAuthorities);
         createRoleIfNotFound("ROLE_USER", Collections.singletonList(readAuthority));
-        Role userRole= roleRepository.findByName("ROLE_USER");
+        Role userRole = roleRepository.findByName("ROLE_USER");
         User user = new User();
         user.setUsername("user");
         user.setPassword(encoder.encode("user"));
@@ -63,13 +64,14 @@ public class SetupLoader implements
         userRepository.save(user);
         Role adminRole = roleRepository.findByName("ROLE_ADMIN");
         User admin = new User();
-       admin.setUsername("admin");
+        admin.setUsername("admin");
         admin.setPassword(encoder.encode("admin"));
-        admin.setRoles(List.of(adminRole,userRole));
+        admin.setRoles(List.of(adminRole, userRole));
         userRepository.save(admin);
 
         alreadySetup = true;
     }
+
     @Transactional
     Authority createAuthorityIfNotFound(String name) {
 
@@ -80,6 +82,7 @@ public class SetupLoader implements
         }
         return authority;
     }
+
     @Transactional
     Role createRoleIfNotFound(
             String name, Collection<Authority> authorities) {

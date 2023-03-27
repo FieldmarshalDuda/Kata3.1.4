@@ -16,19 +16,21 @@ public class Role implements GrantedAuthority {
     private int id;
     @Column(name = "name")
     private String name;
-@ManyToMany(mappedBy = "roles")
-Collection<User> users=new ArrayList<>();
-@ManyToMany
-@JoinTable(
-        name = "authorities_roles",
-        joinColumns = @JoinColumn(
-                name = "roles_id", referencedColumnName = "id"),
-        inverseJoinColumns = @JoinColumn(
-                name = "authority_id", referencedColumnName = "id"))
-    Collection<Authority> authorities=new ArrayList<>();
-public Role(){
+    @ManyToMany(mappedBy = "roles")
+    Collection<User> users = new ArrayList<>();
+    @ManyToMany
+    @JoinTable(
+            name = "authorities_roles",
+            joinColumns = @JoinColumn(
+                    name = "roles_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "authority_id", referencedColumnName = "id"))
+    Collection<Authority> authorities = new ArrayList<>();
 
-}
+    public Role() {
+
+    }
+
     public Role(String name) {
         this.name = name;
     }
@@ -69,8 +71,9 @@ public Role(){
     public String getAuthority() {
         return getName();
     }
+
     @Override
-    public String toString(){
-    return name;
+    public String toString() {
+        return name;
     }
 }

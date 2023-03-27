@@ -25,18 +25,20 @@ public class AuthController {
     }
 
     @GetMapping("/login")
-    public String loginPage(){
+    public String loginPage() {
         return "login";
     }
+
     @GetMapping("/registration")
-    public String registrationPage(@ModelAttribute("user") User user){
+    public String registrationPage(@ModelAttribute("user") User user) {
         return "registration";
     }
+
     @PostMapping("/registration")
-    public String performRegistration(@ModelAttribute("user")@Valid User user,
-                                      BindingResult bindingResult){
-        validator.validate(user,bindingResult);
-        if(bindingResult.hasErrors()){
+    public String performRegistration(@ModelAttribute("user") @Valid User user,
+                                      BindingResult bindingResult) {
+        validator.validate(user, bindingResult);
+        if (bindingResult.hasErrors()) {
             return "registration";
         }
         service.save(user);

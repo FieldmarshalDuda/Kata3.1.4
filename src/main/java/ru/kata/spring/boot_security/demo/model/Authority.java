@@ -9,6 +9,7 @@ public class Authority {
 
     public Authority() {
     }
+
     public Authority(String name) {
         this.name = name;
     }
@@ -19,6 +20,6 @@ public class Authority {
     private int id;
     @Column(name = "name")
     private String name;
-    @ManyToMany(mappedBy = "authorities",fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "authorities", fetch = FetchType.EAGER)
     private List<Role> roles;
 }
