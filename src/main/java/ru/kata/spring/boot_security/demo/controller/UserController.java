@@ -16,11 +16,6 @@ import ru.kata.spring.boot_security.demo.service.UserService;
 @RequestMapping("/user")
 public class UserController {
 
-
-    @Autowired
-    public UserController() {
-    }
-
     @GetMapping("")
     public String user(@AuthenticationPrincipal Details userdetails, Model model) {
         model.addAttribute("user", userdetails.getUser());
